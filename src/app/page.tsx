@@ -17,6 +17,7 @@ import {
   Globe,
   CalendarDays,
   Hash,
+  QrCode,
 } from 'lucide-react';
 
 import { Item, Batch, Screen, Language, BatchStatus, Unit } from '../types';
@@ -32,6 +33,7 @@ import {
   deleteBatch,
 } from '../lib/storage';
 import ScannerComponent from '../components/ScannerComponent';
+import QRCodeModal from '../components/QRCodeModal';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -363,6 +365,7 @@ function InventoryScreen({
   const [editingItem, setEditingItem] = useState<Item | null>(null);
   const [showScanner, setShowScanner] = useState(false);
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
+  const [qrItem, setQrItem] = useState<Item | null>(null);
 
   const filtered = items.filter((item) => {
     const q = query.toLowerCase();
@@ -464,6 +467,13 @@ function InventoryScreen({
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
                   <button
+                    onClick={() => setQrItem(item)}
+                    className="p-2 text-gray-400 hover:text-indigo-400 hover:bg-gray-700 rounded-lg transition-colors"
+                    aria-label={t.qr_button}
+                  >
+                    <QrCode size={15} />
+                  </button>
+                  <button
                     onClick={() => { setEditingItem(item); setShowForm(true); }}
                     className="p-2 text-gray-400 hover:text-indigo-400 hover:bg-gray-700 rounded-lg transition-colors"
                     aria-label={t.common_edit}
@@ -522,6 +532,14 @@ function InventoryScreen({
           items={items}
           onItemFound={handleItemFound}
           onClose={() => setShowScanner(false)}
+        />
+      )}
+
+      {qrItem && (
+        <QRCodeModal
+          language={language}
+          item={qrItem}
+          onClose={() => setQrItem(null)}
         />
       )}
     </div>

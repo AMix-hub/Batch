@@ -59,6 +59,13 @@ export interface TranslationDictionary {
   batches_new_batch: string;
   batches_edit_batch: string;
 
+  // QR Code
+  qr_title: string;
+  qr_description: string;
+  qr_download: string;
+  qr_close: string;
+  qr_button: string;
+
   // Scanner
   scanner_title: string;
   scanner_start: string;
@@ -147,6 +154,13 @@ const translations: Record<Language, TranslationDictionary> = {
     batches_new_batch: 'Ny sats',
     batches_edit_batch: 'Redigera sats',
 
+    // QR Code
+    qr_title: 'QR-kod',
+    qr_description: 'Skanna med appen för att hitta denna artikel.',
+    qr_download: 'Ladda ner',
+    qr_close: 'Stäng',
+    qr_button: 'Visa QR',
+
     // Scanner
     scanner_title: 'Skanna streckkod',
     scanner_start: 'Starta kamera',
@@ -233,6 +247,13 @@ const translations: Record<Language, TranslationDictionary> = {
     batches_delete: 'Delete Batch',
     batches_new_batch: 'New Batch',
     batches_edit_batch: 'Edit Batch',
+
+    // QR Code
+    qr_title: 'QR Code',
+    qr_description: 'Scan with the app to find this item.',
+    qr_download: 'Download',
+    qr_close: 'Close',
+    qr_button: 'Show QR',
 
     // Scanner
     scanner_title: 'Scan Barcode',
